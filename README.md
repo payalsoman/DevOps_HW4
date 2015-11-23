@@ -4,6 +4,15 @@ Initial Setup:
 
 ### 1. File IO:
 
+Create a droplet on digital ocean.
+
+Connect to the droplet using follwing command:
+```
+ssh root@<ip_address of droplet>
+```
+
+Copy the Dockerfile from your local directory to the droplet.
+
 Create a container using the following command which uses the Dockerfile created in the repository.
 ```
 sudo docker build -t task1 .
@@ -11,8 +20,7 @@ sudo docker build -t task1 .
 
 The following script uses socat to map file access to read file container and expose over port 9001:
 ```
-sudo docker run -td --name container_server task1
-socat tcp-l:9001,reuseaddr,fork system:'cat /output.txt',nofork
+docker run -d --name container_server file-io socat tcp-l:9001,reuseaddr,fork system:'cat output.txt',nofork
 ```
 
 The following script creates a linked container to the server container created above.
