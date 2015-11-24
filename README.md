@@ -32,6 +32,7 @@ sudo docker run -td --link container_server:server --name container_client task1
 ```
 
 Then we execute this linked client container and install curl. Using the curl command, the client container fetches the file output.txt from the server container at port 9001.
+
 ```
 sudo docker exec -it container_client bash
 sudo apt-get install curl
@@ -48,20 +49,24 @@ Create two droplets Host1 and Host2.
 Copy their respective docker-compose.yml files to the Host1 and Host2 folders.
 
 Install docker compose on both the hosts:
+
 ```
 curl -L https://github.com/docker/compose/releases/download/1.5.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ```
 
-Host1 is the server and Host2 is the client.
+Host1 is the client and Host2 is the server.
 
-For Host1, do ```docker-compose up```
-This will create two containers on Host1:
+For Host2, do ```docker-compose up```
+This will create two containers on Host2:
+
 1. redis
 2. redis-ambassador-server
 
-For Host2 as well, do ```docker-compose run redis_cli```
-This creates the folowwing container on Host2:
+For Host1, do ```docker-compose run redis_cli```
+
+This creates the folowwing containers on Host1:
+
 1. redis-ambassador-client
 2. redis_cli
 
@@ -76,15 +81,24 @@ Follow all the steps of the Deployment workshop to set up the deploy directory s
 
 Clone the app repo, and set the following remotes.
 
+```
 git remote add blue file://$ROOT/blue.git
+
 git remote add green file://$ROOT/green.git
+```
+
 You can now push changes in the following manner.
 
+```
 git push green master
+
 git push blue master
+```
+
 You may have to create a simple commit before pushing.
 
 After push, go to your machine's green and blue ports to see the changes made.
+
 ##### GIF
 
 ![hw4payal_3](https://cloud.githubusercontent.com/assets/14048728/11356267/38dc4e26-922a-11e5-92ec-1767d992131f.gif)
