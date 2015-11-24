@@ -13,6 +13,11 @@ ssh root@<ip_address of droplet>
 
 Copy the Dockerfile from your local directory to the droplet.
 
+Install docker using following command:
+```
+curl -sSL https://get.docker.com/ | sh
+```
+
 Create a container using the following command which uses the Dockerfile created in the repository.
 ```
 sudo docker build -t task1 .
@@ -37,11 +42,15 @@ curl server:9001
 
 ### Ambassador Pattern:
 
-Install docker compose.
-
 Create two droplets Host1 and Host2.
 
 Copy their respective docker-compose.yml files to the Host1 and Host2 folders.
+
+Install docker compose on both the hosts:
+```
+curl -L https://github.com/docker/compose/releases/download/1.5.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
 
 Host1 is the server and Host2 is the client.
 
