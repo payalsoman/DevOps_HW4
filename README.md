@@ -39,6 +39,9 @@ sudo docker exec -it container_client bash
 sudo apt-get install curl
 curl server:9001 
 ```
+##### GIF
+
+![hw4payal_1](https://cloud.githubusercontent.com/assets/14048728/11356263/34feb38e-922a-11e5-9b7e-47956c073af7.gif)
 
 ### Ambassador Pattern:
 
@@ -59,13 +62,32 @@ This will create two containers on Host1:
 1. redis
 2. redis-ambassador-server
 
-For Host2 as well, do ```docker-compose up```
+For Host2 as well, do ```docker-compose run redis_cli```
 This creates the folowwing container on Host2:
 1. redis-ambassador-client
+2. redis_cli
 
-Run the following command to create a new container which is linked to the redis-ambassador-client.
-```
-sudo docker run -it --link redis_ambassador_client:redis --name client_cli relateiq/redis-cli
-```
-This enables us to access the client-cli and use the set and get requests with redis.
+This enables us to access the client cli and use the set and get requests with redis.
+
+##### GIF
+
+![hw4payal_2](https://cloud.githubusercontent.com/assets/14048728/11356264/379b651a-922a-11e5-80aa-1c55c5731395.gif)
+
+### Docker Deploy
+Follow all the steps of the Deployment workshop to set up the deploy directory structure.
+
+Clone the app repo, and set the following remotes.
+
+git remote add blue file://$ROOT/blue.git
+git remote add green file://$ROOT/green.git
+You can now push changes in the following manner.
+
+git push green master
+git push blue master
+You may have to create a simple commit before pushing.
+
+After push, go to your machine's green and blue ports to see the changes made.
+##### GIF
+
+![hw4payal_3](https://cloud.githubusercontent.com/assets/14048728/11356267/38dc4e26-922a-11e5-92ec-1767d992131f.gif)
 
