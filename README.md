@@ -1,7 +1,5 @@
 # DevOps_HW4 : Advanced Docker
 
-Initial Setup:
-
 ### 1. File IO:
 
 Create a droplet on digital ocean.
